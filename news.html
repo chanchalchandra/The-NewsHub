@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News App</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .logo-text {
+            text-align: center;
+        }
+
+        .logo-text h1 {
+            font-size: 2.5rem;
+            color: #000;
+            font-weight: normal;
+            letter-spacing: -1px;
+            line-height: 1;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .logo-text h1 span {
+            font-weight: bold;
+            color: #0066cc;
+            transition: color 0.3s ease;
+        }
+
+        .logo-text h1 span:hover {
+            color: #004d99;
+        }
+
+        .company-logo {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="main-nav container flex">
+            <a href="#" onclick="reload()" class="company-logo">
+                <div class="logo-text">
+                    <h1>The News<span>HUB</span></h1>
+                </div>
+            </a>
+            <div class="nav-links">
+                <ul class="flex">
+                    <li class="hover-link nav-item" id="iiitnr" onclick="window.location.href='iiitnr-news.html'">IIITNR</li>
+                    <li class="hover-link nav-item" id="ipl" onclick="onNavItemClick('ipl')">IPL</li>
+                    <li class="hover-link nav-item" id="finance" onclick="onNavItemClick('finance')">Finance</li>
+                    <li class="hover-link nav-item" id="politics" onclick="onNavItemClick('politics')">Politics</li>
+                    <li class="hover-link nav-item" id="bookmarks" onclick="showBookmarks()">Save</li>
+                </ul>
+            </div>
+            
+           
+            <div class="bookmark-section">
+                <ul id="bookmark-list"></ul>
+            </div>
+            
+            <div class="search-bar flex">
+                <input id="search-text" type="text" class="news-input" placeholder="e.g. Science">
+                <button id="search-button" class="search-button">Search</button>
+            </div>
+        </div>
+    </nav>
+    
+
+    <main>
+        <div class="cards-container container flex" id="cards-container">
+            
+        </div>
+    </main>
+
+    <template id="template-news-card">
+        <div class="card">
+            <div class="card-header">
+                <img src="https://via.placeholder.com/400x200" alt="news-image" id="news-img">
+            </div>
+            <div class="card-content">
+                <h3 id="news-title">This is the Title</h3>
+                <h6 class="news-source" id="news-source">End Gadget 26/08/2023</h6>
+                <p class="news-desc" id="news-desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <button class="bookmark-btn">Bookmark</button>  
+            </div>
+        </div>
+    </template>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IIITNR News</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 0;
+            margin: 0;
+        }
+
+        .header {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            text-align: center;
+        }
+
+        .logo-text h1 {
+            font-size: 2.5rem;
+            color: #000;
+            font-weight: normal;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .logo-text h1 span {
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 500px; /* Fixed height for all cards */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-image-container {
+            width: 100%;
+            height: 250px; /* Fixed height for image container */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Changed to contain to show full image */
+            background-color: #f5f5f5; /* Light background for image container */
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .card-image {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #333;
+            line-height: 1.4;
+            font-weight: bold;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            flex: 1;
+        }
+
+        /* Custom scrollbar styling */
+        .card-description::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .card-description::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .card-description::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .card-description::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            background: #004d99;
+            transform: translateY(-2px);
+        }
+
+        .summarizer-link {
+            background: #0066cc;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .summarizer-link:hover {
+            background: #004d99;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .cards-grid {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                height: auto;
+                min-height: 500px;
+            }
+
+            .container {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-text">
+                <h1>The News<span>HUB</span></h1>
+            </div>
+            <a href="summarizer.html" class="summarizer-link">Summarizer</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <a href="news.html" class="back-button">← Back to News</a>
+        
+        <div class="cards-grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="IIITNR news1.jpg" alt="IIITNR Event 1" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">45 Students Attend Summer School on Data Science at IIIT Naya Raipur</h3>
+                    <p class="card-description">A six-day summer school on mathematical foundations for Data Science and Machine Learning was conducted at the Centre for Applied Mathematics, IIIT Naya Raipur, from June 4 to June 9, 2024. The program attracted 45 participants from across India. The objective was to provide students and faculty with practical and theoretical insights into core concepts such as Linear Algebra, Probability Theory, and Optimization Methods. Sessions were held in both offline and online modes, with participation from faculties outside Chhattisgarh. Students also gained hands-on experience using MATLAB for computational tasks. The initiative aimed to benefit undergraduate and postgraduate students, researchers, faculty members, and industry professionals.</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="p2.jpg" alt="IIITNR Event 2" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Free Training on Advanced Library Software Technology Underway at IIIT Naya Raipur</h3>
+                    <p class="card-description">IIIT Naya Raipur is hosting a free training workshop for 25 library professionals from across India on advanced library software technologies. Organized by the Information and Library Network Centre (INFLIBNET), an autonomous institution under the Ministry of Education, the workshop is being conducted in the Library Department of IIIT-NR. Participants are being trained in the latest version of SOUL 3.0 software, which helps manage library systems efficiently. Institutions participating include NITs, IITs, Ravishankar Shukla University, and others from cities like Raipur, Varanasi, Patna, Lucknow, and Ranchi. The sessions include hands-on training on version control, system updates, and theoretical as well as practical modules.</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="p3.jpg" alt="IIITNR Event 3" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">IIIT Students Create Posters to Raise Awareness on HIV/AIDS Prevention</h3>
+                    <p class="card-description">Students of IIIT Naya Raipur conducted an awareness event under the Red Ribbon Club to educate people on HIV/AIDS prevention. The program featured various competitions like essay writing, poster making, and quiz contests to spread awareness. Students highlighted the causes, symptoms, and preventive measures related to AIDS through creative and informative posters. The event also aimed to promote social responsibility among youth. Winners of the competitions were awarded certificates. IIIT Director Dr. Pradeep Kumar Sinha emphasized the importance of youth participation in such social awareness campaigns and encouraged continued contributions to public health awareness.</p>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="p4.jpg" alt="IIITNR Event 4" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Research Projects from NIT and IIIT Receive Funding in 2023; 18 Students Awarded Young Scientist Title</h3>
+                    <p class="card-description">In 2023, 7 research projects from NIT and IIIT institutions were selected for funding, including 5 from NITs and 2 from IIITs. Compared to the previous year, the number of approved projects has dropped. At IIIT-Naya Raipur, Dr. Aijaz Ahmad's team is developing an AI-based device to detect Autism Spectrum Disorder, funded with ₹22.66 lakhs. Another project by Dr. Santosh Kumar focuses on using Artificial Intelligence to identify cardiac and lung diseases from chest X-rays, receiving ₹31 lakhs. Additionally, 18 students from across Chhattisgarh were honored with the Young Scientist Award at a state-level event for their outstanding research and innovations in fields like physics, engineering, environment, and biotechnology.</p>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="p5.jpg" alt="IIITNR Event 5" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">18 Talents Honored with Young Scientist Award at Chhattisgarh Congress</h3>
+                    <p class="card-description">The 19th Chhattisgarh Young Scientist Congress was held under the joint aegis of the National Institute of Technology (NIT) Raipur and the Chhattisgarh Council of Science and Technology. Out of 72 participants across 8 disciplines, 18 young scientists were awarded for their outstanding research and presentations. The event was inaugurated by Prof. A.M. Rawani and attended by several dignitaries. Students from IIIT Naya Raipur, NIT Raipur, AIIMS, BIT Durg, and other institutions were recognized. The winners included names such as Kamal Sahu, Shreya Daksh, Shruti Verma, and multiple other meritorious students. This recognition highlights the region's growing contribution to scientific innovation and research.</p>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="p6.jpg" alt="IIITNR Event 6" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">IIIT Naya Raipur Hosts Awareness Drive on HIV/AIDS Prevention</h3>
+                    <p class="card-description">The Red Ribbon Club of IIIT Naya Raipur conducted an event to promote awareness about HIV prevention and AIDS. The program featured essay writing, poster-making, and quizzes to educate students on the importance of disease prevention. Key guests, including Sunita Chansoria from Raipur College and institute dignitaries, addressed the participants, emphasizing the importance of awareness and social responsibility. Dr. Pradeep Kumar Sinha, Director of IIIT Naya Raipur, highlighted the need for youth to be agents of change. The event also honored individuals who contributed significantly to awareness efforts, reinforcing IIIT-NR's commitment to health education and community engagement.</p>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="p7.jpg" alt="IIITNR Event 7" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Technovate 5.0 Concludes with Diverse and Energetic Activities</h3>
+                    <p class="card-description">The International Institute of Information Technology (IIIT) Naya Raipur wrapped up its flagship event, Technovate 5.0, with an exciting blend of technical and cultural activities. The event included sports finals, RoboWars (Robolution), coding challenges, oratory conclaves, dance battles, and vibrant music performances. Technical sessions explored fields like AI, cybersecurity, and space tech. A total of 74 teams participated in the quiz competitions, with 16 advancing to semifinals. The event fostered innovation, teamwork, and creative expression, ending with a Bollywood music night featuring electrifying performances. It was a memorable celebration of talent and camaraderie within the IIIT community.</p>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="p8.jpg" alt="IIITNR Event 8" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Energetic Youth Shine in Dance Battle at Technovate 5.0
+
+                    </h3>
+                    <p class="card-description">At the grand finale of Technovate 5.0 held at IIIT Naya Raipur, the campus came alive with a spectacular mix of art, intellect, and innovation. One of the event's main attractions was the dance battle, where students mesmerized the audience with both traditional and freestyle performances. The day also featured competitive sports like cricket, volleyball, basketball, and table tennis, as well as oratory contests that showcased participants' speech and reasoning skills. RoboWars and innovative tech displays added a modern edge. Over 25 competitions were held, with cash prizes awarded to the winners. The event concluded with electrifying Bollywood dance performances, leaving the crowd energized and entertained.</p>
+                </div>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="p9.jpg" alt="IIITNR Event 9" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">IIIT Students Present Innovative Ideas like Health Monitoring and Smart Baby Incubator
+                    </h3>
+                    <p class="card-description">On the second day of Technovate 5.0 at IIIT Naya Raipur, students showcased impressive technological innovations through events like the Venture Vista Conclave and startup exhibitions. Among the standout ideas were a smart baby incubator, health monitoring systems, and AI-based safety solutions. Teams pitched their ideas through multiple competitive rounds, including mock investor sessions and real-world problem-solving challenges. A total of 16 teams advanced to the semifinals, with eight moving on to the final round. Students from various colleges shared over 30 innovative ideas on AI, cybersecurity, healthcare, and more. The day highlighted the creative problem-solving capabilities of young innovators and concluded with awards for the most promising ideas.</p>
+                </div>
+            </div>
+
+            <!-- Card 10 -->
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="p10.jpg" alt="" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">IIT-NR Students Receive Patent for Smartphone-Based Smart Body Temperature Detection System</h3>
+                    <p class="card-description">A team of four students from IIIT Naya Raipur—Divyansh Kushwaha, Deepanshu Pratik, Shivanshu Prajapati—under the guidance of Dr. Shrivishal Tripathi, has been granted a patent for developing a novel system to measure body temperature using a USB thermal camera attached to a smartphone. This innovation leverages machine learning and image processing to provide real-time temperature readings, even for groups.
+
+                        Developed in response to the limitations of traditional methods used during COVID-19, this solution offers a cost-effective, scalable, and safe alternative for high-traffic areas like airports, hospitals, and schools. The technology has demonstrated accuracy and reliability and is considered a breakthrough in public health screening.</p>
+                </div>
+            </div>
+
+            <!-- Card 11 -->
+            <div class="card">
+                <div class="card-image-container">
+                    <img src="p11.jpg" alt="IIITNR Event 11" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">IT-NR Students Receive Patent for Smartphone-Based Smart Body Temperature Detection System</h3>
+                    <p class="card-description">A team of four students from IIIT Naya Raipur—Divyansh Kushwaha, Deepanshu Pratik, Shivanshu Prajapati—under the guidance of Dr. Shrivishal Tripathi, has been granted a patent for developing a novel system to measure body temperature using a USB thermal camera attached to a smartphone. This innovation leverages machine learning and image processing to provide real-time temperature readings, even for groups.
+
+                        Developed in response to the limitations of traditional methods used during COVID-19, this solution offers a cost-effective, scalable, and safe alternative for high-traffic areas like airports, hospitals, and schools. The technology has demonstrated accuracy and reliability and is considered a breakthrough in public health screening.</p>
+                </div>
+            </div>
+
+           
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

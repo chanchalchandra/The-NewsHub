@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsHub - Journalism of Excellence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(0, 0, 0, 0.02) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 0, 0, 0.02) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.01) 0%, transparent 40%);
+            z-index: 0;
+        }
+
+        .header {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .main-content {
+            height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            text-align: center;
+        }
+
+        .logo h1 {
+            font-size: 3.5rem;
+            color: #000;
+            font-weight: normal;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .logo h1 span {
+            font-weight: bold;
+            color: #0066cc;
+            transition: color 0.3s ease;
+        }
+
+        .logo h1 span:hover {
+            color: #004d99;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 0.5rem;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            height: 100%;
+        }
+
+        .content {
+            width: 40%;
+            animation: fadeIn 1s ease-out 0.5s both;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1rem 0;
+        }
+
+        .images-container {
+            width: 60%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            perspective: 1000px;
+            position: relative;
+        }
+
+        .images-grid {
+            display: grid;
+            grid-template-areas:
+                "img1 img2 img2 img3"
+                "img4 img2 img2 img5"
+                "img6 img7 img8 img8";
+            gap: 0.8rem;
+            width: 100%;
+            height: 400px;
+            animation: slideInRight 1s ease-out;
+        }
+
+        .images-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            transform: scale(0.95);
+            filter: brightness(0.9);
+        }
+
+        .images-grid img:nth-child(1) { grid-area: img1; }
+        .images-grid img:nth-child(2) { 
+            grid-area: img2; 
+            transform: scale(1.02);
+        }
+        .images-grid img:nth-child(3) { grid-area: img3; }
+        .images-grid img:nth-child(4) { grid-area: img4; }
+        .images-grid img:nth-child(5) { grid-area: img5; }
+        .images-grid img:nth-child(6) { grid-area: img6; }
+        .images-grid img:nth-child(7) { grid-area: img7; }
+        .images-grid img:nth-child(8) { grid-area: img8; }
+
+        .images-grid img:hover {
+            transform: scale(1.05) translateZ(20px);
+            filter: brightness(1.1);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        h2 {
+            font-size: 2.4rem;
+            color: #333;
+            margin-bottom: 0.8rem;
+            line-height: 1.2;
+            position: relative;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding-bottom: 10px;
+            font-family: 'Times New Roman', serif;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right,
+                transparent,
+                #333,
+                transparent
+            );
+            transform-origin: center;
+            transition: transform 0.3s ease;
+            opacity: 0.3;
+        }
+
+        h2:hover {
+            transform: translateY(-2px);
+            color: #000;
+        }
+
+        h2:hover::after {
+            opacity: 1;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+
+        .motto {
+            color: #555;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+            padding: 0.8rem;
+            border-left: 2px solid #333;
+            position: relative;
+            transition: all 0.3s ease;
+            background: linear-gradient(to right, rgba(51, 51, 51, 0.05), transparent);
+            border-radius: 4px;
+        }
+
+        .motto::before {
+            content: '"';
+            position: absolute;
+            left: -2rem;
+            top: -1rem;
+            font-size: 4rem;
+            background: linear-gradient(45deg, #333, #666);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: Georgia, serif;
+            transition: all 0.3s ease;
+        }
+
+        .motto span {
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .motto:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to right, rgba(51, 51, 51, 0.08), transparent);
+        }
+
+        .motto:hover::before {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .motto-text {
+            display: inline-block;
+            background: linear-gradient(45deg, #333, #666);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .motto:hover .motto-text {
+            transform: translateX(10px);
+            background: linear-gradient(45deg, #1a1a1a, #4a4a4a);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .get-started {
+            display: inline-block;
+            background: linear-gradient(45deg, #0066cc, #0052a3);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.2);
+            position: relative;
+            overflow: hidden;
+            align-self: flex-start;
+            margin-top: 0.5rem;
+        }
+
+        .get-started:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+            background: linear-gradient(45deg, #005cb8, #004080);
+        }
+
+        .get-started::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            h2 {
+                font-size: 2rem;
+            }
+
+            .images-grid {
+                height: 350px;
+            }
+
+            .content {
+                gap: 0.6rem;
+            }
+
+            .motto {
+                margin-bottom: 1rem;
+                padding: 0.6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                height: auto;
+                min-height: calc(100vh - 80px);
+                padding: 1.5rem 0;
+            }
+
+            .container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .content {
+                width: 100%;
+            }
+
+            .images-container {
+                width: 100%;
+            }
+
+            .images-grid {
+                height: 300px;
+            }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-text">
+                    <h1>The News<span>HUB</span></h1>
+                    <div class="tagline">JOURNALISM OF EXCELLENCE</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="content">
+                <h2>Reading the news each day is not just about knowing what happened</h2>
+                <p>It's about understanding the world we live in, the forces that shape it, and how we, as informed individuals, can influence it.</p>
+                <p class="motto">
+                    <span class="motto-text">Stay curious. Stay aware. Stay empowered.</span>
+                </p>
+                <a href="news.html" class="get-started">Get Started</a>
+            </div>
+            <div class="images-container">
+                <div class="images-grid">
+                    <img src="img2.jpg" alt="News 1">
+                    <img src="img3.jpg" alt="News 2">
+                    <img src="img3.webp" alt="News 3">
+                    <img src="img4.jpeg" alt="News 4">
+                    <img src="news8.jpg" alt="News 5">
+                    <img src="news9.jpg" alt="News 6">
+                    <img src="img1.jpg" alt="News 7">
+                    <img src="img2.jpg" alt="News 8">
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html> 
